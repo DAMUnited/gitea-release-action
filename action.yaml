@@ -33,3 +33,4 @@ runs:
         TAG: ${{ inputs.tag }}
         REPOSITORY: ${{ github.repository }}
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DRAFT: ${{ inputs.draft }}
