@@ -1,0 +1,35 @@
+name: 'Gitea release action'
+description: 'Gitea release action that simplifies '
+inputs:
+  server_url:
+    description: 'The Gitea Server URL'
+    required: true
+    default: 'https://gitte.damu.rocks'
+  tag:
+    description: 'The tag we want to create a release for'
+    required: true
+    default: ''
+  body:
+    description: ''
+    required: false
+    default: ''
+  release_name:
+    description: 'The name of the release'
+    required: true
+    default: ''
+  draft:
+    description: 'Is the release a release draft'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - run: ${{ github.action_path }}/script.sh
+      shell: bash
+      env:
+        SERVER_URL: ${{ inputs.server_url}}
+        NAME: ${{ inputs.release_name}}
+        TAG: ${{ inputs.tag }}
+        REPOSITORY: ${{ github.repository }}
+        TOKEN: ${{ secrets.GITHUB }}
