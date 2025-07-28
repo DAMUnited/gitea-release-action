@@ -7,17 +7,17 @@ echo "Data: ${DATA}"
 git tag $TAG
 git push origin $TAG
 
-#curl --request POST \
-#          --url "$URL" \
-#          --header 'content-type: application/json' \
-#          --header "Authorization: token ${TOKEN}" \
-#          --data "$DATA"
-
-if ! curl --fail --request POST \
+curl --request POST \
           --url "$URL" \
           --header 'content-type: application/json' \
           --header "Authorization: token ${TOKEN}" \
           --data "$DATA"
-    echo "Error: Failed to create release"
-    exit 1
-fi
+
+#if ! curl --fail --request POST \
+#          --url "$URL" \
+#          --header 'content-type: application/json' \
+#          --header "Authorization: token ${TOKEN}" \
+#          --data "$DATA"
+#    echo "Error: Failed to create release"
+#    exit 1
+#fi
