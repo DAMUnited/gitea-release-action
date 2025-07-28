@@ -3,11 +3,21 @@ DATA="{ \"body\":\"${BODY}\", \"draft\": ${DRAFT}, \"name\": \"${NAME}\", \"tag_
 echo "Using $URL"
 echo "Using tag ${TAG} for release"
 echo "Data: ${DATA}"
-echo "TOKEN: ${TOKEN}"
+
 git tag $TAG
 git push origin $TAG
-curl --request POST \
+
+#curl --request POST \
+#          --url "$URL" \
+#          --header 'content-type: application/json' \
+#          --header "Authorization: token ${TOKEN}" \
+#          --data "$DATA"
+
+if ! curl --fail --request POST \
           --url "$URL" \
           --header 'content-type: application/json' \
           --header "Authorization: token ${TOKEN}" \
           --data "$DATA"
+    echo "Error: Failed to create release"
+    exit 1
+fi

@@ -21,6 +21,10 @@ inputs:
     description: 'Is the release a release draft'
     required: false
     default: 'false'
+  token:
+    description: "The token used for releasing"
+    required: true
+    default: ''
 
 runs:
   using: 'composite'
@@ -35,5 +39,5 @@ runs:
         NAME: ${{ inputs.release_name}}
         TAG: ${{ inputs.tag }}
         REPOSITORY: ${{ github.repository }}
-        TOKEN: ${{ secrets.GITEA_TOKEN }}
+        TOKEN: ${{ inputs.token }}
         DRAFT: ${{ inputs.draft }}
