@@ -1,5 +1,10 @@
+URL=${SERVER_URL}/api/v1/repos/${REPOSITORY}/releases
+echo "Using $URL"
+echo "Using tag ${TAG} for release"
+git tag $TAG
+git push origin $TAG
 curl --request POST \
-          --url https://gitte.damu.rocks/api/v1/repos/SIP/semantic-release-versioning-test/releases \
+          --url "$URL" \
           --header 'content-type: application/json' \
-          --header 'Authorization: token ${{ secrets.GITEA_TOKEN}}' \
-          --data '{ "body":"$BODY", "draft": false, "name": "Just a release name", "tag_name": "${{ steps.get_next_version.outputs.version }}", "prerelease": false }'
+          --header "Authorization: token ${TOKEN}" \
+          --data "{ \"body\":\"${BODY}\", \"draft\": false, \"name\": \"Just a release name\", \"tag_name\": \"${TAG}\", \"prerelease\": false }"
