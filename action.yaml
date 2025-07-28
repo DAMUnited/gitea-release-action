@@ -35,5 +35,5 @@ runs:
         NAME: ${{ inputs.release_name}}
         TAG: ${{ inputs.tag }}
         REPOSITORY: ${{ github.repository }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TOKEN: ${{ secrets.GITEA_TOKEN }}
         DRAFT: ${{ inputs.draft }}
